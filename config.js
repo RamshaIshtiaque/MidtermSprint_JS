@@ -6,7 +6,7 @@ const { configjson } = require('./templates');
 function displayConfig() {
     if(DEBUG) console.log('config.displayConfig()');
     fs.readFile(__dirname + "/json/config.json", (error, data) => {
-        if(error) throw error; // should write a log event for the error, github issue #7    
+        if(error) throw error;  
         console.log(JSON.parse(data));
     });
 }
@@ -14,10 +14,8 @@ function displayConfig() {
 function resetConfig() {
     if(DEBUG) console.log('config.resetConfig()');
     let configdata = JSON.stringify(configjson, null, 2);
-    // if(DEBUG) console.log(__dirname + './json/config.json');
-    // if(DEBUG) console.log(configdata);
     fs.writeFile(__dirname + '/json/config.json', configdata, (error) => {
-        if(error) throw error;   // issue #7 also applies here
+        if(error) throw error; 
         if(DEBUG) console.log('Config file reset to original state');
      });
 }
@@ -43,7 +41,6 @@ function setConfig() {
        }
         if(DEBUG) console.log(cfg);
         data = JSON.stringify(cfg, null, 2);
-        // looks like this code is writing the file again even if there is
         fs.writeFile(__dirname + '/json/config.json', data, (error) => {
             if (error) throw error;
             if(DEBUG) console.log('Config file successfully updated.');

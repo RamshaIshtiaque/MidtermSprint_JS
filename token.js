@@ -81,18 +81,11 @@ function tokenUpdatePhone(username, newPhone) {
       if (error) throw error;
   
       let tokens = JSON.parse(data);
-  
-      // Find the index of the user with the provided username
       const userIndex = tokens.findIndex((user) => user.username === username);
   
       if (userIndex !== -1) {
-        // Update the phone number for the found user
         tokens[userIndex].phone = newPhone;
-  
-        // Convert the updated array back to JSON
         const updatedTokens = JSON.stringify(tokens, null, 2);
-  
-        // Write the updated JSON back to the file
         fs.writeFile(__dirname + '/json/tokens.json', updatedTokens, (err) => {
           if (err) console.log(err);
           else {

@@ -6,10 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = 3000;
 
-// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (request, response) => {
@@ -33,7 +31,6 @@ app.listen(PORT, () => {
 });
 
 function generateToken(username) {
-    // Generate a token using uuid
     const token = uuidv4();
     return token;
 }
